@@ -1,0 +1,64 @@
+.cataory-header {
+    display: inline-block;
+}
+
+.heading {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px !important;
+    line-height: 30px;
+    color: #000000;
+}
+
+.card-title {
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    line-height: 21px !important;
+    text-align: center !important;
+    margin-top: -3px;
+}
+
+.card-img {
+    position: absolute;
+    width: 109px;
+    height: 105px;
+    left: 19px;
+    top: 6px;
+}
+
+.card {
+    display: inline-block;
+    width: 148px;
+    height: 173px;
+    background: #FFFFFF;
+    border-radius: 30px;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.card-body {
+    position: absolute;
+    width: 111px;
+    height: 28px;
+    left: 18px;
+    top: 115px;
+    text-align: center;
+    white-space: pre-wrap;
+    
+
+}
+
+.horizontal-scroll {
+    position: relative;
+    height: 178px; // hide the scroll bar
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.category-container {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}

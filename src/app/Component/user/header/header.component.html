@@ -1,0 +1,152 @@
+<div class="container-lg pt-3 pb-3">
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand curser-pointer"><img src="../../../../assets/logo/brand_logo.svg" alt=""></a>
+        <ul class="navbar-nav mr-auto curser-pointer">
+            <li class="nav-item curser-pointer">
+                <div class="corner-round" style="padding: 4px 10px 4px 10px !important;">
+                    <span class="me-2"><img src="../../../../assets/logo/material-symbols_location-on-rounded.svg"
+                                alt=""></span>
+                        <!-- Select Location</p> -->
+                        <select class="select" [(ngModel)]="selectedLocation" (change)="onSelectLocation()">
+                            <option *ngFor="let location of allLocation" [value]="location.location">{{location.location}}</option>
+                        </select>
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar ms-auto mt-auto mb-auto">
+            <div class="nav-item ">
+                <div class="search d-flex border">
+                    <label class="ms-2 me-2" for="search"><img src="../../../../assets/logo/search.svg" alt=""></label>
+                    <input type="text" name="search" placeholder="search. . ." id="" (keyup)="getVal(value.value)" #value>
+                </div>
+            </div>
+            <div class="nav-item ms-3 curser-pointer">
+                <div class="" (click)="opencart()">
+                    <div class="rounded-circle itemcount" *ngIf="cartItemCount != null">
+                        <p style="margin: -2px;">{{cartItemCount}}</p>
+                    </div>
+                    <img src="../../../../assets/logo/Bag.svg" alt="">
+                </div>
+            </div>
+            <div class="nav-item ms-3 curser-pointer">
+                <div class="d-flex " (click)="openDashboard()">
+                    <div class="profile rounded-circle  me-2">
+                        <img class="profile rounded-circle" src="" alt="" *ngIf="!isLoggedIn">
+                        <img class="profile rounded-circle" [src] ="userDetails[0].profileImgUrl" alt="" *ngIf="isLoggedIn">
+                    </div>
+                    <div>
+                        <img src="../../../../assets/logo/down-arrow.svg" alt=""
+                            style="vertical-align: -webkit-baseline-middle">
+                    </div>
+                </div>
+            </div>
+        </ul>
+    </nav>
+</div>
+
+<ng-template #cart>
+    <div class="cart">
+        <div class="row  p-3" style="margin: 0;">
+            <p class="cart-heading d-inline-block">Cart <span>({{cartItemCount}} Item)</span></p>
+            <button class="btn-popup-close" (click)="closeModel()" style="background-color: #FFFFFF;"><img
+                    src="../../../../assets/logo/cross.svg" alt=""></button>
+        </div>
+        <div class="row cart-body   m-0">
+            <div class=" row cart-details  m-0 mb-3" *ngFor="let item of cartItem">
+
+                <div class=" cart-img">
+                    <img class="cart-img" src="../../../../assets/logo/product.png" alt="">
+                </div>
+                <div class="cart-item-details" >
+                    <div class="row">
+                        <p class="item-name">{{item.foodName}}</p>
+                        <button class="ms-auto item-delete me-4"(click)="removeItem(item)"><img src="../../../../assets/logo/delete.svg"
+                                alt=""></button>
+                    </div>
+                    <div class="row">
+                        <div class="quantity-btn ms-3">
+                            <button class="quantity-plus ms-1" (click)="decreaseQuantity(item)"><img src="../../../../assets/logo/minus.svg"
+                                    alt=""></button>
+                            <input class="quantity" type="number" [value]="item.quantity" readonly>
+                            <button class="quantity-plus" (click)="increaseQuantity(item)"><img src="../../../../assets/logo/add.svg" alt=""></button>
+                        </div>
+                        <p class="cart-price ms-auto">
+                            ₹{{item.price * item.quantity}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cart-footer mt-5">
+            <div class="row">
+                <div class="col ">
+                    <p class="footer-heading">Sub Total</p>
+                    <p class="sub-heading">Extra Charges May apply</p>
+                </div>
+                <div class="col ">
+                    <p class="total-price">₹ {{subTotal}}</p>
+                </div>
+            </div>
+            <div class="">
+                <button  class="footer-btn" [disabled]="cartItemCount == null || cartItemCount ==0 " (click)="openCheckout()">Check out</button>
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+<ng-template #login>
+<div class="container-fluid login pb-5 ">
+    <div class="row  p-3" style="margin: 0;">
+        <button class="btn-popup-close" (click)="closeModel()" style="background-color: transparent;"><img
+                src="../../../../assets/logo/cross.svg" alt=""></button>
+    </div>
+    <div class="row  p-3" style="margin: 0;">
+        <img src="../../../../assets/logo/brand_logo.svg" alt="" class="m-auto" style="width: 158.02px; height: 27.03px;">
+    </div>
+    <div class="row  p-3   mt-5" style="margin: 0;">
+        <form [formGroup]="loginForm" class="ms-auto me-auto" style="width: auto;">
+            <input type="number" formControlName="phoneNo" pattern="[1-9]{1}[0-9]{9}" placeholder="xxxxxxxxxx" required class=" login-input ms-auto me-auto">
+        </form>
+    </div>
+    <div class="row  p-3  " style="margin: 0;">
+        
+        <button class="btn-login" *ngIf="!loginForm.valid" style="background-color: #dadada !important;">Continue</button>
+        <button class="btn-login" (click)="sendOtp(otp)" *ngIf="loginForm.valid">Continue</button>
+    </div>
+    <div class="row  p-3   " style="margin: 0;">
+       <p class="terms">By Continuing you agree to the Terms of Services and Privacy policy.</p>
+    </div>
+</div>
+</ng-template>
+
+
+<ng-template #otp>
+<div class="container-fluid login pb-5 ">
+    <div class="row  p-3 " style="margin: 0;">
+        <button class="btn-popup-back " (click)="closeModel()" style="background-color: transparent;"><img
+            src="../../../../assets/logo/left-arrow.svg" alt=""></button>
+        <button class="btn-popup-close " (click)="closeModel()" style="background-color: transparent;"><img
+                src="../../../../assets/logo/cross.svg" alt=""></button>
+        
+    </div>
+    <div class="row  p-3" style="margin: 0;">
+        <!-- <img src="../../../../assets/logo/brand_logo.svg" alt="" class="m-auto" style="width: 158.02px; height: 27.03px;"> -->
+        <h1 class="popup-heading">Enter OTP</h1>
+        <p class="popup-sub-heading">Please enter the code we just sent to
+            {{loginForm.value.phoneNo}} to proceed</p>
+    </div>
+    <div class="row  p-3   mt-4" style="margin: 0;">
+        <form [formGroup]="otpForm" class="ms-auto me-auto" style="width: auto;">
+            <input type="text" formControlName="otp"  pattern="[0-9]{6}" placeholder="xxxxxx" class="login-input ms-auto me-auto">
+        </form>   
+    </div>
+    <div class="row  p-3  " style="margin: 0;">
+        <button class="btn-login" *ngIf="!otpForm.valid" style="background-color: #dadada !important;">Continue</button>
+        <button class="btn-login" *ngIf="otpForm.valid" (click)="verifyOtp()">Confirm</button>
+    </div>
+    <div class="row  p-3   " style="margin: 0;">
+       <p class="resend">Didn’t receive OTP?<span style="color:#FF4F01; cursor: pointer;">RESEND</span> </p>
+    </div>
+</div>
+
+</ng-template>

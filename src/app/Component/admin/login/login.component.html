@@ -1,0 +1,27 @@
+<div class="conatiner-fluid border">
+    <div class="row rounded m-auto">
+        <div class="col   p-5">
+            <h2 class="text-center mb-5">
+                Food Box
+            </h2>
+            <p style="color: red;">{{errMsg}}</p>
+            <form class="mb-5" [formGroup]="loginForm" (ngSubmit)="validateLogin()" autocomplete="off">
+                <div class="form-group mt-2">
+                    <label for="User ID" class="mb-1">Email ID :</label>
+                    <input type="text" formControlName="userName" id="email" class="form-control input-m" required>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="password" class="mb-1">Password:</label>
+                    <input type="password" formControlName="password" id="password"  class="form-control input-m" required>
+                </div>
+                <div class="form-group mt-2">
+                    <a href="">Forgot Password?</a>
+                </div>
+                <div class="form-group mt-2">
+                    <button type="submit" class="btn btn-outline-light button-submit mt-2" [disabled]="!loginForm.valid" >Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

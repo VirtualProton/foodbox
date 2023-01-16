@@ -1,0 +1,13 @@
+<div class="container-fluid ms-5">
+    <h4 class="mt-5 mb-5">All Orders</h4>
+    <div class="row order-item ps-3 pe-3 mb-3" *ngFor="let order of orderHistory">
+        <div class="col m-auto ">
+            <p class="mb-1">{{order.orderedItem}}</p>
+            <p>#{{order.order_id}}</p>
+        </div>
+        <div class="col m-auto ">
+            <p class="text-end mb-1">₹{{order.totalPrice}}</p>
+            <p class="text-end">{{order.ordered_on | date}} </p>
+        </div>
+    </div>
+</div>

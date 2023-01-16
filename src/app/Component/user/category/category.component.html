@@ -1,0 +1,27 @@
+<div class="container-lg">
+    <div class="row   pb-4">
+        <div class="col">
+            <div class="d-inline-block align-middle">
+                <h1 class="heading">Categories</h1>
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-inline-block float-end">
+                <div>
+                    <p><span><img src="../../../../assets/logo/filter.svg" alt=""></span> Filter</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row horizontal-scroll">
+        <div class="category-container">
+            <div class="card me-3 mb-5" *ngFor="let item of category" (click)="focusFood(item.category)">
+                <img [src]="item.imgurl" class="card-img card-img-top rounded-circle  mt-3"  alt="...." >
+                <div class="card-body">
+                    <p>{{item.category}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+<div class="container-lg">
+    <div>
+        <div class="row   pb-4">
+            <div class="col">
+                <div class="d-inline-block align-middle">
+                    <h1 class="heading">Featured</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row horizontal-scroll">
+            <div class="item-container">
+                <div class="card me-3 " *ngFor="let food of foods | filter:searchText">
+                    <img [src]="food.imgUrl"
+                        class="card-img card-img-top rounded-circle  mt-3 img-size" alt="...." (click)="openProductsModel(food,productPopupModal)">
+                    <div class="card-body" (click)="openProductsModel(food,productPopupModal)" >
+                        <p>{{food.foodName}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <p>₹ {{food.price}}</p>
+                        <button [id] ="food.id"  (click)="addToCart(food)">ADD <span><img src="../../../../assets/logo/add.svg" alt=""></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngFor="let item of categories" [id]="item.category">
+        <div class="row   pb-4">
+            <div class="col">
+                <div class="d-inline-block align-middle">
+                    <h1 class="heading mt-4">{{item.category}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row horizontal-scroll">
+            <div class="item-container">
+                <div class="d-inline-block" *ngFor="let food of foods" >
+                    <div class="card me-3" *ngIf="food.category == item.category">
+                        <!-- <div  > -->
+                        <img  [src]="food.imgUrl"class="card-img card-img-top rounded-circle  mt-3 img-size" (click)="openProductsModel(food,productPopupModal)" alt="....">
+                        <div class="card-body" (click)="openProductsModel(food,productPopupModal)">
+                            <p>{{food.foodName}}</p>
+                        </div>
+                        <div class="card-footer" >
+                            <p>₹ {{food.price}}</p>
+                            <button [id] ="food.id"  (click)="addToCart(food)">ADD <span><img src="../../../../assets/logo/add.svg" alt=""></span></button>
+                        </div>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #productPopupModal>
+    <div class=".container-fluid product-popup">
+        <div class="row">
+            <button class="btn-popup-close" (click)="closeModel()"><img src="../../../../assets/logo/cross.svg"
+                    alt=""></button>
+        </div>
+        <div class="row mb-5">
+            <div class="col ">
+                <div class="img-product  rounded-circle">
+                    <img class="rounded-circle" [src]="productModel.imgUrl" alt="" style="width: 344px; height: 344px;">
+                </div>
+            </div>
+            <div class="col ">
+                <div class="row  mt-5 border-bottom pb-4">
+                    <div class="row ">
+                        <h3 class="heading-popup">{{productModel.foodName}}</h3>
+                    </div>
+                    <div class="row ">
+                        <p class="catagery-popup">{{productModel.category}}</p>
+                    </div>
+                    <div class="row mt-3 ">
+                        <div class="col">
+                            <p class="price-popup">
+                                <span *ngIf="productModel.type == 'non-veg'">
+                                    <img src="../../../../assets/logo/nonveg.svg" alt="">
+                                </span>
+                                <span *ngIf="productModel.type == 'veg'">
+                                    <img src="../../../../assets/logo/veg.svg" alt="">
+                                </span>
+                                ₹{{productModel.price}}
+                            </p>
+                        </div>
+                        <div class="col">
+                            <button class="addtocart-popup" (click)="addToCart(productModel)">Add <span><img src="../../../../assets/logo/add.svg"
+                                        alt=""></span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="discription-popup mt-4">
+                        {{productModel.discription}}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</ng-template>
+

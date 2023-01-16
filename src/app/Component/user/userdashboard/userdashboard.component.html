@@ -1,0 +1,37 @@
+<div class="container-fluid p-0" style="height: 88.5vh;">
+    <div class="container-fluid  p-0 bg-header navbar-shadow m-0" >
+      <div class="container-lg pt-3 pb-3">
+        <nav class="navbar navbar-expand-lg">
+          <a class="navbar-brand curser-pointer"><img src="../../../../assets/logo/brand_logo.svg" alt=""></a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row " style="height: 100%;">
+        <div class="  nav-side navbar-shadow ">
+            <div class="nav-profile row   m-auto mt-5 pb-4">
+                <div class="profile-img rounded-circle ms-2 p-0 ">
+                    <img [src]="profile_img" alt="" class="profile-img rounded-circle">
+                </div>
+                <div class="profile-details m-auto ">
+                    <div>Name</div>
+                    <div><a target="_self" routerLinkActive="active" [routerLink]="['profile']">View Profile</a></div>
+                </div>
+            </div>
+            <div class=" row   m-auto mt-5">    
+                <div class="profile-details m-auto ">
+                    <div><a target="_self" routerLinkActive="active" [routerLink]="['orderhistory']">Orders</a></div>
+                </div>
+            </div>
+            <div class=" row   m-auto mt-5 ">  
+                <div class="profile-details m-auto ">    
+                    <div (click)="logout()" class="curser-pointer"><a>Logout</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="view ">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    
+</div>

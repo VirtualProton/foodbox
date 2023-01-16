@@ -1,0 +1,24 @@
+.conatiner-fluid{
+    color: white;
+    height: 100vh;
+    background-image: url("../../../../assets/background/login.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    align-items: center;
+
+}
+
+.row{
+    max-width: 400px;
+    margin-top: 10% !important;
+    background-color: rgb(255, 255, 255, .1);
+}
+
+.input-m{
+    background-color: transparent;
+    color: white;
+   
+}
+.form-control{
+border: 2px solid #ced4da !important;
+}

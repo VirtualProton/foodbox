@@ -1,0 +1,10 @@
+// export const  API_BASE_PATH = "http://ec2-13-127-18-140.ap-south-1.compute.amazonaws.com:8080/api/"
+export const  API_BASE_PATH = "http://localhost:8080/api/";
+export const   CATEGORY = "category/";
+export const FOOD = "food/";
+export const FILE = "file/";
+export const LOCATION = "location/";
+export const OTP="otp/";
+export const USER="user/";
+export const ORDER="order/";
+export const STORE = "store/"
